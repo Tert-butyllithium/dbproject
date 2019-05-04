@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sustech.dbproject.dao.ReportDao">
+    <select id="listAllReport" resultType="edu.sustech.dbproject.entity.Report" parameterType="java.lang.Integer">
+        select * from lanmao.report order by report_id desc limit #{num} offset (#{page}-1)*#{num}
+    </select>
+
+    <select id="listAllUnprocessedReport" resultType="edu.sustech.dbproject.entity.Report" parameterType="java.lang.Integer">
+        select * from lanmao.report where reporter_id is null order by report_id desc limit #{num} offset (#{page}-1)*#{num}
+    </select>
+
+    <insert id="insert" parameterType="edu.sustech.dbproject.entity.Report">
+        insert into lanmao.report values (default,#{goods_id},#{reporter_id},#{report_desc_cn},#{report_desc_en},#{report_fdb_cn},#{report_desc_en});
+    </insert>
+
+    <update id="update" parameterType="edu.sustech.dbproject.entity.Report">
+        update lanmao.report
+        <set>
+            <if test="goods_id!=null">goods_id=#{goods_id} , </if>
+            <if test="reporter_id!=null"> reporter_id=#{reporter_id}, </if>
+            <if test="report_desc_cn!=null">report_desc_cn=#{report_desc_cn},</if>
+            <if test="report_desc_en!=null">report_desc_en=#{report_desc_en},</if>
+            <if test="report_fdb_cn!=null">report_fdb_cn=#{report_fdb_cn},</if>
+            <if test="report_fdb_en!=null">report_fdb_en=#{report_fdb_en},</if>
+        </set>
+        where report_id=#{id};
+    </update>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sustech.dbproject.dao.FavoriteDao">
+    <select id="findFavorites" parameterType="java.lang.Integer" resultType="edu.sustech.dbproject.entity.Good">
+        select seller_id, name, goods_tag, trade_loc, desc_cn, desc_en, post_time, goods_status, price, buying_price from lanmao.goods natural join lanmao.favorite where add_user=#{user} order by add_time desc limit 10 offset (#{page}-1)*10
+    </select>
+
+    <select id="CountUserFavorite" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) from lanmao.favorite inner join lanmao.user_info on favorite.add_user = user_info.user_id where goods_id=#{good}
+    </select>
+
+    <insert id="mark">
+        insert into lanmao.favorite values (default,#{user},#{good},default);
+    </insert>
+
+    <delete id="delete">
+        delete from lanmao.favorite where add_user=#{user} and goods_id=#{good};
+    </delete>
+</mapper>

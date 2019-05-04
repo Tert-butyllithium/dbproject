@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sustech.dbproject.dao.CommentDao">
+    <select id="showAllComment" resultType="edu.sustech.dbproject.entity.Comment" parameterType="java.lang.Integer">
+        select id, order_id, cmt_rate, cmt_desc_cn, cmt_desc_en from lanmao.comment natural join lanmao."order" natural join lanmao.goods where seller_id=#{user} order by post_time desc limit 10 offset (#{page}-1)*10
+    </select>
+
+    <insert id="insert" parameterType="edu.sustech.dbproject.entity.Comment">
+        insert into lanmao.comment values (default,#{order_id},#{cmt_rate},#{cmt_desc_cn},#{cmt_desc_en});
+    </insert>
+
+    <update id="update" parameterType="edu.sustech.dbproject.entity.Comment">
+        update lanmao.comment
+        <set>
+            <if test="order_id!=null">order_id=#{order_id}, </if>
+            <if test="cmt_rate!=null">cmt_rate=#{cmt_rate},</if>
+            <if test="cmt_desc_cn">cmt_desc_cn=#{cmt_desc_cn},</if>
+            <if test="cmt_desc_en">cmt_desc_en=#{cmt_desc_en},</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="listPictures" resultType="java.lang.String" parameterType="java.lang.Integer">
+        select pict_url from lanmao.comment_picture where cmt_id=#{comment}
+    </select>
+
+    <insert id="addPicture">
+        insert into lanmao.comment_picture
+        values (default,#{comment},#{picture})
+    </insert>
+
+    <delete id="removePicture">
+        delete from lanmao.comment_picture where cmt_id=#{comment} and pict_url=#{picture}
+    </delete>
+</mapper>

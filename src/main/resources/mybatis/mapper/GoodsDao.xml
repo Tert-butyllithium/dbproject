@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sustech.dbproject.dao.GoodsDao">
+    <select id="findById" resultType="edu.sustech.dbproject.entity.Good" parameterType="java.lang.Integer">
+        select * from lanmao.goods where goods_id=#{goodId}
+    </select>
+
+    <select id="listPictures" resultType="java.lang.String" parameterType="java.lang.Integer">
+        select pict_url from lanmao.goods_picture where goods_id=#{goodId}
+    </select>
+
+    <select id="findBySeller" resultType="edu.sustech.dbproject.entity.Good" parameterType="java.lang.Integer">
+        select * from lanmao.goods where seller_id=#{seller} order by goods_id desc limit 10 offset (#{page}-1)*10
+    </select>
+
+    <select id="findByName" resultType="edu.sustech.dbproject.entity.Good" parameterType="java.lang.String">
+        select * from lanmao.goods where goods_status=1 and name=#{name} order by post_time desc limit 1000
+    </select>
+
+    <select id="findWithTag" resultType="edu.sustech.dbproject.entity.Good">
+        select * from lanmao.goods where goods_status=1 and goods_tag=#{tag} and name=#{name} order by post_time desc limit 1000
+    </select>
+
+    <insert id="insert" parameterType="edu.sustech.dbproject.entity.Good">
+        insert into lanmao.goods values (default,#{seller},#{name},#{tag},#{tradeLocation},#{desc_cn},#{desc_en},default,default,#{price},#{oldPrice})
+    </insert>
+
+    <update id="update" parameterType="edu.sustech.dbproject.entity.Good">
+        update lanmao.goods
+            <set>
+                <if test="seller!=null">seller_id=#{seller} , </if>
+                <if test="name!=null"> name=#{name}, </if>
+                <if test="tag!=null">goods_tag=#{tag},</if>
+                <if test="tradeLocation!=null">trade_loc=#{tradeLocation},</if>
+                <if test="desc_cn!=null">desc_cn=#{desc_cn},</if>
+                <if test="desc_en!=null">desc_end=#{desc_en},</if>
+                <if test="postTime!=null">post_time=#{postTime},</if>
+                <if test="status!=null">goods_status=#{status},</if>
+                <if test="price!=null">price=#{price},</if>
+                <if test="oldPrice!=null">buying_price=#{oldPrice},</if>
+            </set>
+            where goods_id=#{goodId};
+    </update>
+
+    <insert id="addPicture">
+        insert into lanmao.goods_picture
+        values (default,#{good},#{picture})
+    </insert>
+
+    <delete id="removePicture">
+        delete from lanmao.goods_picture where goods_id=#{good} and pict_url=#{picture}
+    </delete>
+
+</mapper>

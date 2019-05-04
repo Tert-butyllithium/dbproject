@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sustech.dbproject.dao.UserDao">
+    <select id="findAll" resultType="edu.sustech.dbproject.entity.User" parameterType="java.lang.Integer">
+        select * from lanmao.user_info order by user_id limit 10 offset ((#{page}-1)*10)
+    </select>
+
+    <select id="findByNickname" resultType="edu.sustech.dbproject.entity.User">
+        select * from lanmao.user_info where nickname like concat('%',#{nickname},'%') order by user_id limit 10 offset ((#{page}-1)*10)
+    </select>
+
+    <select id="find" resultType="edu.sustech.dbproject.entity.User" parameterType="java.lang.Integer">
+        select * from lanmao.user_info where user_id=#{user}
+    </select>
+
+    <insert id="insert" parameterType="edu.sustech.dbproject.entity.User">
+        INSERT INTO "lanmao"."user_info" ("user_id", "status", "permission", "email_address","nickname", "avatar_url", "open_id")
+        VALUES (default,
+                <choose>
+                    <when test="status!=null"> #{status}, </when>
+                    <otherwise>default,</otherwise>
+                </choose>
+                <choose>
+                    <when test="permission!=null"> #{permission}, </when>
+                    <otherwise> default, </otherwise>
+                </choose>
+                 #{email_address}, #{nickname}, #{avatar_url}, #{open_id})
+    </insert>
+
+    <update id="update" parameterType="edu.sustech.dbproject.entity.User">
+        update lanmao.user_info
+            <set>
+            <if test="status!=null">status = #{status},</if>
+             <if test="permission!=null">permission = #{permission},</if>
+             <if test="email_address!=null">email_address=#{email_address},</if>
+             <if test="nickname!=null">nickname=#{nickname},</if>
+             <if test="avatar_url!=null">avatar_url=#{avatar_url},</if>
+             <if test="open_id!=null">open_id=#{open_id},</if>
+            </set>
+        where user_id=#{user_id};
+    </update>
+</mapper>
