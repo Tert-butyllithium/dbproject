@@ -28,18 +28,18 @@ public class MessageServiceImpl implements MessageService {
     @Transactional
     @Override
     public void insertMessage(Message message) {
-        if(message.getRecvUserID() != null && message.getRecvUserID() != null &&
-                message.getContent() != null && !"".equals(message.getContent())){
-            message.setMessageTime(new Date());
-            try{
-                messageDao.insert(message);
-
-            }catch (Exception e){
-                throw new RuntimeException("插入信息失败：" + e.getMessage());
-            }
-        }else{
-            throw new RuntimeException("插入信息失败：插入的信息不能为空！" + message.toString());
-        }
+//        if(message.getRecvUserID() != null && message.getRecvUserID() != null &&
+//                message.getContent() != null && !"".equals(message.getContent())){
+//            message.setMessageTime(new Date());
+//            try{
+//                messageDao.insert(message);
+//
+//            }catch (Exception e){
+//                throw new RuntimeException("插入信息失败：" + e.getMessage());
+//            }
+//        }else{
+//            throw new RuntimeException("插入信息失败：插入的信息不能为空！" + message.toString());
+//        }
     }
 
 

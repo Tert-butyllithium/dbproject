@@ -24,7 +24,14 @@
     </select>
 
     <insert id="insert" parameterType="edu.sustech.dbproject.entity.Good">
-        insert into lanmao.goods values (default,#{seller},#{name},#{tag},#{tradeLocation},#{desc_cn},#{desc_en},default,default,#{price},#{oldPrice})
+        insert into lanmao.goods values (default,#{seller},#{name},#{tag},#{tradeLocation},#{desc_cn},#{desc_en},default,default,
+        <choose>
+            <when test="price!=null">#{price}
+            </when>
+            <otherwise>
+                default
+            </otherwise>
+            </choose>,#{oldPrice})
     </insert>
 
     <update id="update" parameterType="edu.sustech.dbproject.entity.Good">

@@ -12,8 +12,8 @@ public class Good {
     private String desc_cn,desc_en;
     private Date postTime;
     private Integer status;// 1: normal, 2: sold, 3: private
-    private Number price;// or double ?
-    private Number oldPrice;
+    private Double price;// or double ?
+    private Double oldPrice;
 
     public void setGoodId(Integer goodId) {
         this.goodId = goodId;
@@ -55,11 +55,11 @@ public class Good {
         this.status = status;
     }
 
-    public void setPrice(Number price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public void setOldPrice(Number oldPrice) {
+    public void setOldPrice(Double oldPrice) {
         this.oldPrice = oldPrice;
     }
 
@@ -95,11 +95,11 @@ public class Good {
         return status;
     }
 
-    public Number getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public Number getOldPrice() {
+    public Double getOldPrice() {
         return oldPrice;
     }
 }

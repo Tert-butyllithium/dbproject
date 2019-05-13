@@ -1,6 +1,9 @@
-package edu.sustech.dbproject.dao;
+package edu.sustech.dbproject;
 
+import edu.sustech.dbproject.dao.FavoriteDao;
+import edu.sustech.dbproject.dao.MessageDao;
 import edu.sustech.dbproject.dao.UserDao;
+import edu.sustech.dbproject.entity.Message;
 import net.bytebuddy.NamingStrategy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,9 +34,23 @@ public class JDBCTest {
 
     @Autowired
     UserDao userDao;
+
     @Test
     public void getAllUserTest(){
         var c=userDao.findAll(1);
         System.out.println(userDao.findAll(1));
+    }
+
+    @Autowired
+    FavoriteDao favoriteDao;
+
+    public void testFavorite(){
+        System.out.println(favoriteDao.findFavorites(1,1));
+    }
+
+    @Autowired
+    MessageDao messageDao;
+    public void testMessage(){
+        System.out.println(messageDao.findMessage(1,1,1));
     }
 }

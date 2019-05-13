@@ -12,19 +12,20 @@ public interface FavoriteDao {
      * @param user
      * @return
      */
-    List<Good> findFavorites(Integer user, Integer page);
+    List<Good> findFavorites(@Param("user") Integer user,@Param("page") Integer page);
 
     /**
-     * list all users mark this good
+     * the number of users who mark this good
      * @param good
      * @return
      */
-    Integer countUserFavorite(Integer good);
+    Integer countUserFavorite(@Param("good") Integer good);
 
     /**
      * mark as favorite
      * @param user
      * @param good
+     * may cause exception: org.springframework.dao.DuplicateKeyException
      */
     void mark(@Param("user") Integer user, @Param("good") Integer good);
 

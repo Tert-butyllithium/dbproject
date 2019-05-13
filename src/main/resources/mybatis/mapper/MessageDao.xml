@@ -8,8 +8,10 @@
     </select>
 
     <select id="findLatestMessage" resultType="edu.sustech.dbproject.entity.Message">
-        select * from  lanmao.chat where buyer_id=#{buyer} and goods_id=#{good} and send_time < #{time} order by chat_id desc limit 10
+        select * from  lanmao.chat where buyer_id=#{buyer} and goods_id=#{good} and send_time &lt; (#{time}) order by chat_id desc limit 10
     </select>
     
-    <insert id="insert"
+    <insert id="insert" parameterType="edu.sustech.dbproject.entity.Message">
+        insert into lanmao.chat values (default,#{buyer_id},#{goods_id},default,#{chat_type},#{chat_content},#{chat_direct});
+    </insert>
 </mapper>
