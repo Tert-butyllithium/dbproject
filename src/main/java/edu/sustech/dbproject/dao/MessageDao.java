@@ -1,7 +1,9 @@
 package edu.sustech.dbproject.dao;
 
 import edu.sustech.dbproject.entity.Message;
+import org.apache.ibatis.annotations.Param;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 
 public interface MessageDao {
@@ -15,6 +17,15 @@ public interface MessageDao {
      * @return
      */
     List<Message> findMessage(Integer buyer,Integer good,Integer pages);
+
+    /**
+     * find latest ten messages before time
+     * @param buyer
+     * @param good
+     * @param time if null, then time is now
+     * @return
+     */
+    List<Message> findLatestMessage(@Param("buyer") Integer buyer, @Param("good") Integer good,@Param("time") Data time);
 
     /**
      * insert a message
