@@ -4,49 +4,49 @@ import java.beans.JavaBean;
 import java.util.Date;
 
 public class Order {
-    private final int orderId;
-    private int buyer;
-    private int good;
-    private Date createTime;
-    private int status;
+    private int order_id;
+    private int buyer_id;
+    private int goods_id;
+    private Date create_time;
+    private int status;//0： 未完成； 1：已完成; -1: 已删除
 
-    public int getOrderId() {
-        return orderId;
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
 
-    public int getBuyer() {
-        return buyer;
+    public void setBuyer_id(int buyer_id) {
+        this.buyer_id = buyer_id;
     }
 
-    public int getGood() {
-        return good;
+    public void setGoods_id(int goods_id) {
+        this.goods_id = goods_id;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setBuyer(int buyer) {
-        this.buyer = buyer;
-    }
-
-    public void setGood(int good) {
-        this.good = good;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreate_time(Date create_time) {
+        this.create_time = create_time;
     }
 
     public void setStatus(int status) {
         this.status = status;
     }
 
-    public Order(int orderId) {
-        this.orderId = orderId;
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public int getBuyer_id() {
+        return buyer_id;
+    }
+
+    public int getGoods_id() {
+        return goods_id;
+    }
+
+    public Date getCreate_time() {
+        return create_time;
+    }
+
+    public int getStatus() {
+        return status;
     }
 }

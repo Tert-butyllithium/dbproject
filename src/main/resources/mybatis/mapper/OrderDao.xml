@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sustech.dbproject.dao.OrderDao">
+    <select id="getBuyingOrders" parameterType="java.lang.Integer" resultType="edu.sustech.dbproject.entity.Order">
+        select * from lanmao."order" where status&gt;=0 and buyer_id=#{user} order by creat_time desc limit 10 offset (#{page}-1)*10
+    </select>
+
+    <select id="getBuyingOrders" parameterType="java.lang.Integer" resultType="edu.sustech.dbproject.entity.Order">
+--         select * from lanmao."order" where status&gt;=0 and =#{user} order by creat_time desc limit 10 offset (#{page}-1)*10
+    </select>
+
+</mapper>

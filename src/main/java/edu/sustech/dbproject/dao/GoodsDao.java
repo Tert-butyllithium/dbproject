@@ -2,6 +2,7 @@ package edu.sustech.dbproject.dao;
 
 import edu.sustech.dbproject.entity.Good;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Property;
 
 import java.util.List;
 import java.util.ListResourceBundle;
@@ -32,20 +33,20 @@ public interface GoodsDao {
 
     /**
      * find all goods with a keywords
+     * limit 1000
      * @param name
      * @return
      */
-    List<Good> findByName(String name);
+    List<Good> findByName(@Param("name") String name);
 
 
 
-//    /**
-//     * find all goods that have both two keywords
-//     * @param name1
-//     * @param name2
-//     * @return
-//     */
-//    List<Good> findByKeywords(String name1,String name2);
+    /**
+     * find all goods that have keyword
+     * @param name
+     * @return
+     */
+    List<Good> findByKeyword(@Param("name") String name);
 
     /**
      * find all goods with a tag
@@ -54,6 +55,14 @@ public interface GoodsDao {
      * @return
      */
     List<Good> findWithTag(@Param("name") String name,@Param("tag") Integer tag);
+
+    /**
+     * find keywords with a tag
+     * @param name
+     * @param tags
+     * @return
+     */
+    List<Good> findKeywordWithTag(@Param("name") String name,@Param("tag") Integer tag);
 
     /**
      * insert a new good to database

@@ -4,18 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.sustech.dbproject.dao.GoodsDao">
     <select id="findById" resultType="edu.sustech.dbproject.entity.Good" parameterType="java.lang.Integer">
-        select * from lanmao.goods where goods_id=#{goodId}
+        select * from lanmao.goods where goods_id=#{goods_id}
     </select>
 
     <select id="listPictures" resultType="java.lang.String" parameterType="java.lang.Integer">
-        select pict_url from lanmao.goods_picture where goods_id=#{goodId}
+        select pict_url from lanmao.goods_picture where goods_id=#{goods_id}
     </select>
 
     <select id="findBySeller" resultType="edu.sustech.dbproject.entity.Good" parameterType="java.lang.Integer">
         select * from lanmao.goods where seller_id=#{seller} order by goods_id desc limit 10 offset (#{page}-1)*10
     </select>
 
-    <select id="findByName" resultType="edu.sustech.dbproject.entity.Good" parameterType="java.lang.String">
+    <select id="findByName" resultType="edu.sustech.dbproject.entity.Good">
         select * from lanmao.goods where goods_status=1 and name=#{name} order by post_time desc limit 1000
     </select>
 
@@ -23,32 +23,40 @@
         select * from lanmao.goods where goods_status=1 and goods_tag=#{tag} and name=#{name} order by post_time desc limit 1000
     </select>
 
+    <select id="findKeywordWithTag" resultType="edu.sustech.dbproject.entity.Good">
+        select * from lanmao.goods where goods_status=1 and goods_tag=#{tag} and name like '%${name}%' order by post_time desc limit 1000
+    </select>
+
+    <select id="findByKeyword" resultType="edu.sustech.dbproject.entity.Good">
+        select * from lanmao.goods where goods_status=1 and name like '%${name}%' order by post_time desc limit 1000
+    </select>
+
     <insert id="insert" parameterType="edu.sustech.dbproject.entity.Good">
-        insert into lanmao.goods values (default,#{seller},#{name},#{tag},#{tradeLocation},#{desc_cn},#{desc_en},default,default,
+        insert into lanmao.goods values (default,#{seller_id},#{name},#{goods_tag},#{trade_loc},#{desc_cn},#{desc_en},default,default,
         <choose>
             <when test="price!=null">#{price}
             </when>
             <otherwise>
                 default
             </otherwise>
-            </choose>,#{oldPrice})
+            </choose>,#{buying_price})
     </insert>
 
     <update id="update" parameterType="edu.sustech.dbproject.entity.Good">
         update lanmao.goods
             <set>
-                <if test="seller!=null">seller_id=#{seller} , </if>
+                <if test="seller_id!=null">seller_id=#{seller_id} , </if>
                 <if test="name!=null"> name=#{name}, </if>
-                <if test="tag!=null">goods_tag=#{tag},</if>
-                <if test="tradeLocation!=null">trade_loc=#{tradeLocation},</if>
+                <if test="goods_tag!=null">goods_tag=#{tag},</if>
+                <if test="trade_loc!=null">trade_loc=#{trade_loc},</if>
                 <if test="desc_cn!=null">desc_cn=#{desc_cn},</if>
                 <if test="desc_en!=null">desc_end=#{desc_en},</if>
-                <if test="postTime!=null">post_time=#{postTime},</if>
-                <if test="status!=null">goods_status=#{status},</if>
+                <if test="post_time!=null">post_time=#{post_time},</if>
+                <if test="goods_status!=null">goods_status=#{goods_status},</if>
                 <if test="price!=null">price=#{price},</if>
-                <if test="oldPrice!=null">buying_price=#{oldPrice},</if>
+                <if test="buying_price!=null">buying_price=#{buying_price},</if>
             </set>
-            where goods_id=#{goodId};
+            where goods_id=#{goods_id};
     </update>
 
     <insert id="addPicture">

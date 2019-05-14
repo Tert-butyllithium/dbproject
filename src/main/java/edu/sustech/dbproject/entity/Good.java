@@ -4,39 +4,39 @@ import java.util.Date;
 import java.util.List;
 
 public class Good {
-    private Integer goodId;
-    private Integer seller;
+    private Integer goods_id;
+    private Integer seller_id;
     private String name;
-    private Integer tag;
-    private String tradeLocation;
+    private Integer goods_tag;
+    private String trade_loc;
     private String desc_cn,desc_en;
-    private Date postTime;
-    private Integer status;// 1: normal, 2: sold, 3: private
+    private Date post_time;
+    private Integer goods_status;// 1: normal, 2: sold, 3: private
     private Double price;// or double ?
-    private Double oldPrice;
+    private Double buying_price;
 
-    public void setGoodId(Integer goodId) {
-        this.goodId = goodId;
+    public void setGoods_id(Integer goods_id) {
+        this.goods_id = goods_id;
+    }
+
+    public Integer getGoods_id() {
+        return goods_id;
+    }
+
+    public void setSeller_id(Integer seller_id) {
+        this.seller_id = seller_id;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public void setGoods_tag(Integer goods_tag) {
+        this.goods_tag = goods_tag;
     }
 
-    public void setSeller(Integer seller) {
-        this.seller = seller;
-    }
-
-    public void setTag(Integer tag) {
-        this.tag = tag;
-    }
-
-    public void setTradeLocation(String tradeLocation) {
-        this.tradeLocation = tradeLocation;
+    public void setTrade_loc(String trade_loc) {
+        this.trade_loc = trade_loc;
     }
 
     public void setDesc_cn(String desc_cn) {
@@ -47,36 +47,36 @@ public class Good {
         this.desc_en = desc_en;
     }
 
-    public void setPostTime(Date postTime) {
-        this.postTime = postTime;
+    public void setPost_time(Date post_time) {
+        this.post_time = post_time;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setGoods_status(Integer goods_status) {
+        this.goods_status = goods_status;
     }
 
     public void setPrice(Double price) {
         this.price = price;
     }
 
-    public void setOldPrice(Double oldPrice) {
-        this.oldPrice = oldPrice;
+    public void setBuying_Price(Double buying_price) {
+        this.buying_price = buying_price;
     }
 
-    public Integer getGoodId() {
-        return goodId;
+    public Integer getSeller_id() {
+        return seller_id;
     }
 
-    public Integer getSeller() {
-        return seller;
+    public String getName() {
+        return name;
     }
 
-    public Integer getTag() {
-        return tag;
+    public Integer getGoods_tag() {
+        return goods_tag;
     }
 
-    public String getTradeLocation() {
-        return tradeLocation;
+    public String getTrade_loc() {
+        return trade_loc;
     }
 
     public String getDesc_cn() {
@@ -87,19 +87,24 @@ public class Good {
         return desc_en;
     }
 
-    public Date getPostTime() {
-        return postTime;
+    public Date getPost_time() {
+        return post_time;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getGoods_status() {
+        return goods_status;
     }
 
     public Double getPrice() {
         return price;
     }
 
-    public Double getOldPrice() {
-        return oldPrice;
+    public Double getBuying_price() {
+        return buying_price;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }
