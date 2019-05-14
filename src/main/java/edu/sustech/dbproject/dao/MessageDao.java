@@ -2,10 +2,12 @@ package edu.sustech.dbproject.dao;
 
 import edu.sustech.dbproject.entity.Message;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import javax.xml.crypto.Data;
 import java.util.List;
 
+@Repository
 public interface MessageDao {
 
     /**

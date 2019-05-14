@@ -2,9 +2,11 @@ package edu.sustech.dbproject.dao;
 
 import edu.sustech.dbproject.entity.Report;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ReportDao {
     /**
      * list all reports

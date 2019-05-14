@@ -13,8 +13,6 @@ public class DbprojectApplication{
 
     public static void main(String[] args) {
         SpringApplication.run(DbprojectApplication.class, args);
-//        SpringApplication app = SpringApplication(DbprojectApplication::class.java);
-//        new SpringApplicationBuilder(DbprojectApplication.class).web(WebApplicationType.REACTIVE).run(args);
     }
 
 }

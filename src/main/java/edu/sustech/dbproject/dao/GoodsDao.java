@@ -3,10 +3,12 @@ package edu.sustech.dbproject.dao;
 import edu.sustech.dbproject.entity.Good;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Property;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.ListResourceBundle;
 
+@Repository
 public interface GoodsDao {
 
     /**
