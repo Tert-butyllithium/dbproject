@@ -25,6 +25,14 @@ public interface GoodsDao {
 
 
     /**
+     * list all goods bought by user
+     * @param user
+     * @param page
+     * @return
+     */
+    List<Good> listBoughtGoods(Integer user, Integer page);
+
+    /**
      * find all goods sold by someone
      * @param seller
      * @return
@@ -38,7 +46,6 @@ public interface GoodsDao {
      * @return
      */
     List<Good> findByName(@Param("name") String name);
-
 
 
     /**

@@ -107,4 +107,9 @@ public class Good {
     public String toString() {
         return this.name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Good && this.goods_id.equals(((Good) obj).goods_id);
+    }
 }

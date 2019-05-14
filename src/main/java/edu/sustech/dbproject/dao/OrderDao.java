@@ -12,15 +12,22 @@ public interface OrderDao {
      * @param page
      * @return
      */
-    List<Order> getBuyingOrders(Integer user,Integer page);
+    List<Order> getBoughtOrders(Integer user,Integer page);
+//
+//    /**
+//     * list all orders sold by users
+//     * @param user
+//     * @param page
+//     * @return
+//     */
+//    List<Order> getSoldOrders(Integer user,Integer page);
 
     /**
-     * list all orders sold by users
-     * @param user
-     * @param page
+     * get the order by the good
+     * @param good
      * @return
      */
-    List<Order> getSoldOrders(Integer user,Integer page);
+    Order getByGoodId(Integer good);
 
     /**
      * insert an order to database
@@ -29,9 +36,16 @@ public interface OrderDao {
     void insert(Order order);
 
     /**
-     * change status an order whose status=1 (undone)
+     * change status an order whose status=0 (undone)
      * to -1 (deleted)
      * @param order
      */
     void deleteUndoneOrder(Integer order);
+
+    /**
+     * change status an order whose status=0 (undone)
+     * to 1 (done)
+     * @param order
+     */
+    void done(Integer order);
 }

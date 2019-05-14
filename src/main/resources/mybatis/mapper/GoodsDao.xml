@@ -11,6 +11,11 @@
         select pict_url from lanmao.goods_picture where goods_id=#{goods_id}
     </select>
 
+    <select id="listBoughtGoods" resultType="edu.sustech.dbproject.entity.Order" parameterType="java.lang.Integer">
+        select goods_id, seller_id, name, goods_tag, trade_loc, desc_cn, desc_en, post_time, goods_status, price, buying_price from lanmao."order" natural join lanmao.goods
+        where buyer_id=#{user} order by create_time desc limit 10 offset (#{page}-1)*10
+    </select>
+
     <select id="findBySeller" resultType="edu.sustech.dbproject.entity.Good" parameterType="java.lang.Integer">
         select * from lanmao.goods where seller_id=#{seller} order by goods_id desc limit 10 offset (#{page}-1)*10
     </select>

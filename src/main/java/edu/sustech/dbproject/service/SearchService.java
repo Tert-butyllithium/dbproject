@@ -8,6 +8,8 @@ public interface SearchService {
 
     /**
      * return all goods name contains these keyword
+     * if there is an keywords equals the keywords
+     * then it will have a higher priority
      * @param page
      * @param keywords
      * @return

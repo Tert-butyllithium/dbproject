@@ -33,6 +33,12 @@ public class GoodsTest {
         goodsDao.update(good);
     }
 
+    @Test
+    public void listBoughtGoodsTest(){
+        System.out.println(goodsDao.listBoughtGoods(42,1));
+        System.out.println(goodsDao.listBoughtGoods(42,2));
+    }
+
 
     @Test
     public void findByIDtest(){

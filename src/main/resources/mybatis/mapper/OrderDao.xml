@@ -3,12 +3,25 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.sustech.dbproject.dao.OrderDao">
-    <select id="getBuyingOrders" parameterType="java.lang.Integer" resultType="edu.sustech.dbproject.entity.Order">
-        select * from lanmao."order" where status&gt;=0 and buyer_id=#{user} order by creat_time desc limit 10 offset (#{page}-1)*10
+    <select id="getBoughtOrders" parameterType="java.lang.Integer" resultType="edu.sustech.dbproject.entity.Order">
+        select * from lanmao."order" where status&gt;=0 and buyer_id=#{user} order by create_time desc limit 10 offset (#{page}-1)*10
     </select>
 
-    <select id="getBuyingOrders" parameterType="java.lang.Integer" resultType="edu.sustech.dbproject.entity.Order">
---         select * from lanmao."order" where status&gt;=0 and =#{user} order by creat_time desc limit 10 offset (#{page}-1)*10
+
+    <select id="getByGoodId" parameterType="java.lang.Integer" resultType="edu.sustech.dbproject.entity.Order">
+        select * from lanmao."order" where goods_id=#{good}
     </select>
+
+    <insert id="insert" parameterType="edu.sustech.dbproject.entity.Order">
+        insert into lanmao."order" values (default,#{buyer_id},#{goods_id},default,0);
+    </insert>
+
+    <update id="deleteUndoneOrder" parameterType="java.lang.Integer">
+        update lanmao."order" set status = -1 where order_id=#{order_id} and status=0;
+    </update>
+
+    <update id="done" parameterType="java.lang.Integer">
+        update lanmao."order" set status = 1 where order_id=#{order_id} and status=0;
+    </update>
 
 </mapper>

@@ -57,4 +57,9 @@ public class Comment {
     public String getCmt_desc_en() {
         return cmt_desc_en;
     }
+
+    @Override
+    public String toString() {
+        return cmt_desc_cn;
+    }
 }
