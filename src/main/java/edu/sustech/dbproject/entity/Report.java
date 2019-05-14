@@ -1,5 +1,7 @@
 package edu.sustech.dbproject.entity;
 
+import java.util.Date;
+
 public class Report {
     private Integer id;
     private Integer goods_id;
@@ -8,6 +10,15 @@ public class Report {
     private String report_desc_en;
     private String report_fdb_cn;
     private String report_fdb_en;
+    private Date report_time;
+
+    public void setReport_time(Date report_time) {
+        this.report_time = report_time;
+    }
+
+    public Date getReport_time() {
+        return report_time;
+    }
 
     public void setId(Integer id) {
         this.id = id;

@@ -1,11 +1,22 @@
 package edu.sustech.dbproject.entity;
 
+import java.util.Date;
+
 public class Comment {
     private Integer id;
     private Integer order_id;
     private Integer cmt_rate;
     private String cmt_desc_cn;
     private String cmt_desc_en;
+    private Date cmt_time;
+
+    public void setCmt_time(Date cmt_time) {
+        this.cmt_time = cmt_time;
+    }
+
+    public Date getCmt_time() {
+        return cmt_time;
+    }
 
     public void setId(Integer id) {
         this.id = id;

@@ -8,7 +8,7 @@
     </select>
 
     <insert id="insert" parameterType="edu.sustech.dbproject.entity.Comment">
-        insert into lanmao.comment values (default,#{order_id},#{cmt_rate},#{cmt_desc_cn},#{cmt_desc_en});
+        insert into lanmao.comment values (default,#{order_id},#{cmt_rate},#{cmt_desc_cn},#{cmt_desc_en},default);
     </insert>
 
     <update id="update" parameterType="edu.sustech.dbproject.entity.Comment">

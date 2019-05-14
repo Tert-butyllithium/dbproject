@@ -22,7 +22,7 @@ public interface MessageDao {
      * find latest ten messages before time
      * @param buyer
      * @param good
-     * @param time if null, then time is now
+     * @param time the time should not be null
      * @return
      */
     List<Message> findLatestMessage(@Param("buyer") Integer buyer, @Param("good") Integer good,@Param("time") Data time);
